@@ -1,4 +1,5 @@
 {
     "name": "drupal/stm",
+    "type": "drupal-module",
     "require": {}
 }
