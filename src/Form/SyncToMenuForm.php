@@ -7,7 +7,7 @@
 
 namespace Drupal\stm\Form;
 
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -39,10 +39,10 @@ class SyncToMenuForm extends FormBase {
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler service.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, EntityManagerInterface $entity_manager) {
+  public function __construct(ModuleHandlerInterface $module_handler, EntityTypeManagerInterface $entity_manager) {
     $this->moduleHandler = $module_handler;
     $this->storageController = $entity_manager->getStorage('taxonomy_term');
   }
@@ -53,7 +53,7 @@ class SyncToMenuForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('module_handler'),
-      $container->get('entity.manager')
+      $container->get('entity_type.manager')
     );
   }
 
